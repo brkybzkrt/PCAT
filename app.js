@@ -1,14 +1,19 @@
 const express = require('express');
+const path = require('path')
 
-const port = 3000;
 
 const app = express();
 
+
+app.use(express.static('public'))
+
+
 app.get("/",(req,res)=>{
 
-  const image={id:1,name:"foto_name",descrition:"foto description"}
-  res.send(image)
+  res.sendFile(path.resolve(__dirname,'temp/index.html'))
 })
+
+const port = 3000;
 
 app.listen(port, () => {
   console.log(` Server started at port ${port}`);
