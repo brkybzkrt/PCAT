@@ -1,0 +1,26 @@
+{
+  "name": "pcat",
+  "version": "1.0.0",
+  "description": "PCAT App",
+  "main": "app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/brkybzkrt/PCAT.git"
+  },
+  "keywords": [
+    "photo",
+    "app"
+  ],
+  "author": "Ahmet Berkay Bozkurt",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/brkybzkrt/PCAT/issues"
+  },
+  "homepage": "https://github.com/brkybzkrt/PCAT#readme",
+  "devDependencies": {
+    "prettier": "^2.4.1"
+  }
+}
