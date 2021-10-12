@@ -1,6 +1,7 @@
 const express = require('express');
 const mongoose = require('mongoose');
 const fileUpload = require('express-fileupload');
+const methodOverride = require('method-override');
 const ejs = require('ejs');
 const fs = require('fs');
 
@@ -21,10 +22,13 @@ app.set('view engine', 'ejs');
 //middlewares
 app.use(express.static('public'));
 
+app.use(methodOverride('_method'));
+
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
 
 app.use(fileUpload());
+
 
 //routes
 app.get('/', async (req, res) => {
@@ -38,7 +42,7 @@ app.get('/about', (req, res) => {
 });
 
 app.get('/add', (req, res) => {
-  res.render('add');
+  res.render('addPage');
 });
 
 app.get('/photo/:id', async (req, res) => {
@@ -66,6 +70,24 @@ app.post('/photos', async (req, res) => {
     res.redirect('/');
   });
 });
+
+app.get('/photo/update/:id', async (req, res) => {
+  const id = req.params.id;
+  const photo = await Photo.findById(id);
+  res.render('updatePage', { photo });
+});
+
+app.put('/photoUpdate/:id', async(req,res)=>{
+  const id = req.params.id;
+  const {title,description}= req.body;
+  
+  const photo = await Photo.findById(id)
+  photo.title=title;
+  photo.description=description;
+  photo.save();
+
+  res.redirect(`/photo/${id}`)
+})
 
 const port = 3000;
 
