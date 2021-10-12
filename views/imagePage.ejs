@@ -50,7 +50,7 @@
 								
 
 								<div>
-									<button class="btn btn-danger p-0 tm-btn-animate tm-btn-download tm-icon-download"><span>Delete Photo</span></button>	
+									<a href="/photoDelete/<%=photo._id%>?_method=DELETE" class="btn btn-danger p-0 tm-btn-animate tm-btn-download tm-icon-download" onclick="return confirm('Do you want to remove really...')"><span>Delete Photo</span></a>	
 								</div>								
 							</div>
 						</div>

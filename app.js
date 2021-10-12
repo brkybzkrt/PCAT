@@ -22,7 +22,7 @@ app.set('view engine', 'ejs');
 //middlewares
 app.use(express.static('public'));
 
-app.use(methodOverride('_method'));
+app.use(methodOverride('_method',{methods:['POST','GET']}));
 
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
@@ -88,6 +88,19 @@ app.put('/photoUpdate/:id', async(req,res)=>{
 
   res.redirect(`/photo/${id}`)
 })
+
+app.delete('/photoDelete/:id', async(req,res)=>{
+  const id = req.params.id;
+  const photo= await Photo.findById(id);
+  fs.unlinkSync("public"+photo.image)
+
+  await Photo.findByIdAndRemove(id);
+
+  res.redirect('/')
+
+
+})
+
 
 const port = 3000;
 
