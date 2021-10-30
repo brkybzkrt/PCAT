@@ -10,7 +10,7 @@ const pageController= require('./controllers/pageController');
 
 const app = express();
 
-mongoose.connect('mongodb://localhost/pcat', {
+mongoose.connect('mongodb+srv://admin:SISxn987TqvSvWWq@cluster0.w6n5r.mongodb.net/myFirstDatabase?retryWrites=true&w=majority', {
   usenewUrlParser: true,
   useUnifiedTopology: true,
 });
@@ -43,7 +43,7 @@ app.get('/photo/update/:id',pageController.getPhotoUpdatePage);
 
 
 
-const port = 3000;
+const port = process.env.PORT || 3000;
 
 app.listen(port, () => {
   console.log(` Server started at port ${port}`);
